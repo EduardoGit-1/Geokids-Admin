@@ -20,7 +20,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './SideBarItems';
 import geokidsLogo from '../../assets/Logos/GeoKids.png'
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom';
 import SideBarItems2 from './SideBarItems2'
 import Layout from './Layout' 
 import { ListItem,ListItemIcon,ListItemText } from '@material-ui/core';
@@ -130,7 +130,7 @@ export default function Dashboard(props, {defaultActive}) {
         changeActiveIndex(activeItem);
     }, [location])
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -186,7 +186,7 @@ export default function Dashboard(props, {defaultActive}) {
                     SideBarItems2.map((item, index)=> {
                         return (
                             <Link to={item.route} style={{ textDecoration: 'none'}}>
-                                <ListItem  button key={item.name} active={index === activeIndex}>
+                                <ListItem button key={index} active={index === activeIndex}>
                                     <ListItemIcon>
                                         {item.icon}
                                     </ListItemIcon>

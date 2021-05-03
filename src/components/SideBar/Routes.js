@@ -5,10 +5,13 @@ import TrackingView from '../../views/Tracking/TrackingView'
 import UploadsView from '../../views/Uploads/UploadsView'
 import RatingsView from '../../views/Ratings/RatingsView'
 import SideBar from './SideBar'
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory()
 
 const Routes = () => {
+
     return (
-        <BrowserRouter>
+        <BrowserRouter history={history}>
             <Route render={(props)=>(
                 <SideBar {...props}>
                     <Switch>

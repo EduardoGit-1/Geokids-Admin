@@ -3,8 +3,9 @@ import {makeStyles} from "@material-ui/core/styles"
 import googleImage from '../../assets/Images/gm.jpg'
 import { Typography, Grid, Card, CardMedia, CardContent} from '@material-ui/core'
 import RoomIcon from '@material-ui/icons/Room';
-import TimerIcon from '@material-ui/icons/Timer';
-import TimelineIcon from '@material-ui/icons/Timeline';
+import CheckBoxRoundedIcon from '@material-ui/icons/CheckBoxRounded';
+import IndeterminateCheckBoxRoundedIcon from '@material-ui/icons/IndeterminateCheckBoxRounded';
+import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 const useStyles = makeStyles ((theme)=> ({
     container: {
         display:'flex',
@@ -29,7 +30,7 @@ const useStyles = makeStyles ((theme)=> ({
         flexGow:1
     },
     icon:{
-        fontSize : 30,
+        fontSize : 45,
         marginRight: 4
     },
     routeContainer:{
@@ -48,40 +49,53 @@ const useStyles = makeStyles ((theme)=> ({
         flexGrow: 1,
     },
 }))
-const RouteCard = ({destination, origin, duration, distance}) =>{
+const ClassificationCard = ({destination, answers, isFavorite, stars}) =>{
     const classes = useStyles()
+    const checkAnswer = (answer)=>{
+        if (answer == null) return (<IndeterminateCheckBoxRoundedIcon style = {{color : '#C3C500', marginLeft : 10}}/>)
+        if(answer)return (<CheckBoxRoundedIcon style = {{color : '#95D6A4', marginLeft : 10}}/>)
+        return <CancelPresentationRoundedIcon style = {{color : '#F45858', marginLeft : 10}} />
+    }
     return(
             <Card className = {classes.card}>
                 <CardMedia className = {classes.cardMedia} image = {googleImage}/> 
                 <CardContent className = {classes.cardContent}>
                     <div className = {classes.routeContainer}>
-                        <Typography variant = "h4" gutterBottom> Percurso</Typography>
-                        <div className = {classes.route} >
-                            <RoomIcon  className = {classes.icon} style = {{color: '#F45858'}}/>
-                            <Typography> {origin.designation}</Typography>
-                        </div>
                         <div className = {classes.route}>
                             <RoomIcon className = {classes.icon} style = {{color: '#95D6A4'}}/>
-                            <Typography> {destination.designation}</Typography>
+                            <Typography variant ='h5'> {destination.designation}</Typography>
                         </div>
                     </div>
                     <div style = {{marginTop:10}}>
-                        <Typography variant = "h4" gutterBottom> Detalhes</Typography>
+                        <Typography variant = "h5" gutterBottom> Perguntas</Typography>
                             <Grid container spacing = {1} className = {classes.detailsContainer} style = {{marginTop: 10}}>
                                 <Grid item className = {classes.route} xs = {12} lg = {6}>
-                                    <TimerIcon  className = {classes.icon} style = {{color: '#F45858'}}/>
-                                    <Typography>Duração: {duration} s.</Typography>
+                                    <Typography>Brincar: </Typography>
+                                    {checkAnswer(answers.isPlayfull)}
                                 </Grid>
                                 <Grid item className = {classes.route} xs = {12} lg = {6}>
-                                    <TimelineIcon className = {classes.icon} style = {{color: '#95D6A4'}}/>
-                                    <Typography> Distância: {distance} m.</Typography>
+                                    <Typography>Sol: </Typography>
+                                    {checkAnswer(answers.isSunny)}
                                 </Grid>
-                        </Grid>
-                    </div>
+                                <Grid item className = {classes.route} xs = {12} lg = {6}>
+                                    <Typography>Sombra: </Typography>
+                                    {checkAnswer(answers.isSunny)}
+                                </Grid>
+                                <Grid item className = {classes.route} xs = {12} lg = {6}>
+                                    <Typography>Perto de casa: </Typography>
+                                    {checkAnswer(answers.isNear)}
+                                </Grid>
+                                <Grid item className = {classes.route} xs = {12} lg = {6}>
+                                    <Typography>Animais: </Typography>
+                                    {checkAnswer(answers.hasAnimals)}
+                                </Grid>
+
+                            </Grid>
+                        </div>
 
                 </CardContent>
             </Card>
     )
 }
 
-export default RouteCard
+export default ClassificationCard
