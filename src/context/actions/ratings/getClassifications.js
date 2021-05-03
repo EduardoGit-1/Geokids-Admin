@@ -15,7 +15,7 @@ const getClassifications = () => (dispatch) =>{
             Authorization : token
         }
     }).then((response) =>{
-        console.log(response.data)
+        // console.log(response.data)
         dispatch({
             type: "GET_CLASSIFICATION_SUCCESS",
             payload: response.data

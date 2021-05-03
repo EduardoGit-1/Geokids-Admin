@@ -12,6 +12,7 @@ const TrackingView = () => {
     useEffect(()=>{
         getTrackings()(routeDispatch)
     },[])
+
     return(
         <>
             <CssBaseline/>

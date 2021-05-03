@@ -1,10 +1,16 @@
-import { Typography } from '@material-ui/core'
+import { Typography, CssBaseline, Grid} from '@material-ui/core'
 import React from 'react'
+import useStyles from './css'
 
 const UploadsView = () => {
-    
+    const classes = useStyles()
     return(
-        <Typography variant = "h3"> Uploads View</Typography>
+        <>
+        <CssBaseline/>
+        <div className = {classes.container}>
+            <Typography variant = "h2"  color ="textPrimary" >Uploads</Typography>
+        </div>
+    </>
     )
 }
 

@@ -1,3 +1,5 @@
 export const LOGIN = '/auth/signin'
 export const GET_TRACKINGS = '/tracking/getRoutes'
 export const GET_CLASSIFICATIONS = '/ratings/getClassifications'
+export const GET_TOP_RATINGS = '/ratings/getTopRatings'
+export const GET_TOP_FAVOURITES = '/ratings/getTopFavourites'
