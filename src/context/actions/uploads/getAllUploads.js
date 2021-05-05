@@ -1,13 +1,13 @@
 import axios from '../../helpers/axiosInstance'
-import {GET_CLASSIFICATIONS} from '../../constants/endpoints'
-const getClassifications = () => (dispatch) =>{
-    dispatch({
-        type: 'SET_LOADING',
-        payload: null
-    })
+import {GET_ALL_UPLOADS} from '../../constants/endpoints'
+const getAllUploads = () => (dispatch) =>{
     //let city = JSON.parse(localStorage.getItem("user").city)
     let token = JSON.parse(localStorage.getItem("token"))
-    axios.get(GET_CLASSIFICATIONS, {
+    dispatch({
+        type: "SET_LOADING",
+        payload: true
+    })
+    axios.get(GET_ALL_UPLOADS, {
         params: {
             city: "Braga"
         },
@@ -15,17 +15,17 @@ const getClassifications = () => (dispatch) =>{
             Authorization : token
         }
     }).then((response) =>{
-        //console.log(response.data)
+        console.log(response.data)
         dispatch({
-            type: "GET_CLASSIFICATION_SUCCESS",
+            type: "GET_UPLOADS_SUCCESS",
             payload: response.data
         })
     }).catch(err =>{
         dispatch({
-            type: "GET_CLASSIFICATION_SUCCESS_FAIL",
+            type: "GET_UPLOADS_FAIL",
             payload: err
         })
     })
 }
 
-export default getClassifications
+export default getAllUploads

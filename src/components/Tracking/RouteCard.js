@@ -5,6 +5,9 @@ import { Typography, Grid, Card, CardMedia, CardContent} from '@material-ui/core
 import RoomIcon from '@material-ui/icons/Room';
 import TimerIcon from '@material-ui/icons/Timer';
 import TimelineIcon from '@material-ui/icons/Timeline';
+import Maps from "../GoogleMaps/Maps";
+
+
 const useStyles = makeStyles ((theme)=> ({
     container: {
         display:'flex',
@@ -48,11 +51,21 @@ const useStyles = makeStyles ((theme)=> ({
         flexGrow: 1,
     },
 }))
-const RouteCard = ({destination, origin, duration, distance}) =>{
+const RouteCard = ({destination, origin, duration, distance, isDashboard}) =>{
     const classes = useStyles()
+    const convertMarkers = (marker)=> {
+   
+        return({
+            lat : marker.latitude,
+            lng : marker.longitude
+        })
+    }
+    let markers = [convertMarkers(origin), convertMarkers(destination)]
+
     return(
             <Card className = {classes.card}>
-                <CardMedia className = {classes.cardMedia} image = {googleImage}/> 
+                {/* <CardMedia className = {classes.cardMedia} image = {googleImage}/>  */}
+                {!isDashboard && <Maps markers = {markers}/> }
                 <CardContent className = {classes.cardContent}>
                     <div className = {classes.routeContainer}>
                         <Typography variant = "h4" gutterBottom> Percurso</Typography>

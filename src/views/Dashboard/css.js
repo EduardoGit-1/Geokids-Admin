@@ -37,6 +37,11 @@ const useStyles = makeStyles ((theme)=> ({
     },
     cardContent:{
         flexGow:1
+    },
+    miniLogo:{
+        width: 40,
+        height : 40,
+        marginRight: 10,
     }
 }))
 

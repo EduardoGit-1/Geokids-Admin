@@ -24,7 +24,7 @@ const TrackingView = () => {
                     <Grid container spacing = {4} className = {classes.cardGridContainer}>
                         {routeState.routes.length > 0 && routeState.routes.map((item, id) => (
                             <Grid item key={id} xs={12} sm={6} md={4} lg = {3}>
-                                <RouteCard {...item}/>
+                                <RouteCard {...item} isDashboard = {false}/>
                             </Grid>
                         ))}
 

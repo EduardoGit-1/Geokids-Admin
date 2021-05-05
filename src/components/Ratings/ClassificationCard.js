@@ -6,6 +6,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import CheckBoxRoundedIcon from '@material-ui/icons/CheckBoxRounded';
 import IndeterminateCheckBoxRoundedIcon from '@material-ui/icons/IndeterminateCheckBoxRounded';
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
+import Maps from "../GoogleMaps/Maps";
 const useStyles = makeStyles ((theme)=> ({
     container: {
         display:'flex',
@@ -51,6 +52,14 @@ const useStyles = makeStyles ((theme)=> ({
 }))
 const ClassificationCard = ({destination, answers, isFavorite, stars}) =>{
     const classes = useStyles()
+    const convertMarkers = (marker)=> {
+   
+        return({
+            lat : marker.latitude,
+            lng : marker.longitude
+        })
+    }
+    let markers = [convertMarkers(destination)]
     const checkAnswer = (answer)=>{
         if (answer == null) return (<IndeterminateCheckBoxRoundedIcon style = {{color : '#C3C500', marginLeft : 10}}/>)
         if(answer)return (<CheckBoxRoundedIcon style = {{color : '#95D6A4', marginLeft : 10}}/>)
@@ -58,7 +67,7 @@ const ClassificationCard = ({destination, answers, isFavorite, stars}) =>{
     }
     return(
             <Card className = {classes.card}>
-                <CardMedia className = {classes.cardMedia} image = {googleImage}/> 
+               <Maps markers = {markers}/>
                 <CardContent className = {classes.cardContent}>
                     <div className = {classes.routeContainer}>
                         <div className = {classes.route}>
