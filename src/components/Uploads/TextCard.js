@@ -28,6 +28,14 @@ const useStyles = makeStyles ((theme)=> ({
         alignItems: 'center',
         alignContent:'center'
     },
+    txtContainer:{
+        width : '99%',
+        height : '85%',
+        borderRadius : 10,
+        borderWidth : 3,
+        borderColor: 'black',
+        backgroundColor: '#F5F5F5',
+    },
     cardContent:{
         flexGow:1
     },
@@ -51,13 +59,16 @@ const useStyles = makeStyles ((theme)=> ({
         flexGrow: 1,
     },
 }))
-const TextCard = ({destination, data, type, date, isActive, uploadID, deleteTxtImage, deleteVidAudio, updateActive}) =>{
+const TextCard = ({destination, data, type, date, isActive, uploadID, deleteTxtImage, deleteVidAudio, updateActive, isDashBoard}) =>{
     const classes = useStyles()
     return(
             <Card className = {classes.card}>
                 <CardContent className = {classes.cardContent}>
                     <div className = {classes.cardMedia}>
-                        <Typography variant = "h5">Comentário: {data}</Typography>
+                        <div className = {classes.txtContainer}>
+                            <Typography variant = "h5" gutterBottom align = 'center' style ={{paddingBottom: 5}}>Comentário </Typography>
+                            <Typography style ={{paddingLeft : 10, paddingRight: 10}}>{data}</Typography>
+                        </div>
                     </div>
                     <div className = {classes.routeContainer}>
                         <div className = {classes.route}>
@@ -66,11 +77,13 @@ const TextCard = ({destination, data, type, date, isActive, uploadID, deleteTxtI
                         </div>
                     </div>
                 </CardContent>
-                <CardActions>
-                    <Button size="small" color = "primary" onClick={() => updateActive(uploadID, !isActive )}> {isActive ? "Arquivar" : "Re-ativar"} </Button>
-                    <Button size="small" color = "primary" onClick = {() => deleteTxtImage(uploadID)}> Eliminar </Button>
-
-                </CardActions>
+                {!isDashBoard &&
+                    <CardActions>
+                        <Button size="small" color = "primary" onClick={() => updateActive(uploadID, !isActive )}> {isActive ? "Arquivar" : "Re-ativar"} </Button>
+                        <Button size="small" color = "primary" onClick = {() => deleteTxtImage(uploadID)}> Eliminar </Button>
+                    </CardActions>
+                }
+  
             </Card>
     )
 }
